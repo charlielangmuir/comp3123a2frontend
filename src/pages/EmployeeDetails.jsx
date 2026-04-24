@@ -23,7 +23,7 @@ export default function EmployeeDetails() {
     <div className="details-container">
       <h2>{employee.first_name} {employee.last_name}</h2>
       {employee.profilePic && ( 
-      <img className="pfp" src={`http://localhost:5000${new String(employee.profilePic).replace(/^\/app/, '')}`} alt="Profile" width={50} />
+      <img className="pfp" src={`http://localhost:5000${String(employee.profilePic).replace(/^\/app/, '')}`} alt="Profile" width={50} />
       )}
       <p><strong>Email:</strong> {employee.email}</p>
       <p><strong>Position:</strong> {employee.position}</p>

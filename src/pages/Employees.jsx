@@ -13,7 +13,7 @@ export default function Employees() {
     });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    const fetchEmployees = async () => {
+    const fetchEmployees = useCallback(async () => {
     try {
       setLoading(true);
       let query = "";
@@ -29,10 +29,11 @@ export default function Employees() {
       setError("Failed to fetch employees.");
       setLoading(false);
     }
-    };
-    useEffect(() => {
-        fetchEmployees();
     }, []);
+
+    useEffect(() => {
+    fetchEmployees();
+    }, [fetchEmployees]);
 
     const handleSearchChange = (e) => {
         setSearch({
@@ -47,7 +48,7 @@ export default function Employees() {
         if (!window.confirm("Are you sure you want to delete this employee?")) return;
         try {
             await axiosClient.delete(`/emp/employees/${id}`);
-            setEmployees(employees.filter(emp => emp._id != id));
+            setEmployees(employees.filter(emp => emp._id !== id));
             fetchEmployees();
         } catch (err) {
             console.error(err);
