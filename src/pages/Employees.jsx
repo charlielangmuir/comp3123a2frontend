@@ -29,7 +29,7 @@ export default function Employees() {
       setError("Failed to fetch employees.");
       setLoading(false);
     }
-    }, []);
+    }, [search]);
 
     useEffect(() => {
     fetchEmployees();
